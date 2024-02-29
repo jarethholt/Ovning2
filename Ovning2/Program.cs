@@ -1,10 +1,24 @@
-﻿namespace Ovning2
+﻿using Ovning2.MenuHelpers;
+
+namespace Ovning2;
+
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        // Run the menu interface
+        do
         {
-            Console.WriteLine("Hello, World!");
-        }
+            MenuHelper.DisplayMenu();
+            MenuOptions option = Utilities.AskForOption("Your choice: ");
+
+            switch (option)
+            {
+                case MenuOptions.Quit:
+                    Environment.Exit(0);
+                    break;
+            }
+
+        } while (true);
     }
 }

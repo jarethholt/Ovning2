@@ -61,4 +61,37 @@ public static class Utilities
 
         return answer;
     }
+
+    public static MenuOptions AskForOption(string prompt)
+    {
+        string? readResult;
+        MenuOptions answer;
+
+        // Ask the user for one of the menu options. Repeat until valid.
+        Console.Write(prompt);
+        do
+        {
+            readResult = Console.ReadLine();
+
+            // Empty input
+            if (string.IsNullOrWhiteSpace(readResult))
+            {
+                Console.Write("Cannot use an empty value. Try again: ");
+                continue;
+            }
+
+            // Result not a recognized MenuOptions value
+            if (!Enum.IsDefined(typeof(MenuOptions), readResult))
+            {
+                Console.Write($"The choice '{readResult}' is not a valid option. Try again: ");
+                continue;
+            }
+
+            // Valid MenuOptions value
+            answer = (MenuOptions)Enum.Parse(typeof(MenuOptions), readResult);
+            break;
+        } while (true);
+
+        return answer;
+    }
 }
