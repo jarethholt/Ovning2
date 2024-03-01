@@ -30,14 +30,24 @@ internal class Program
     // Methods to run individual menu options
     static void Repeat()
     {
-        Console.Clear();
-        Console.WriteLine("In this subprogram, you provide a word.");
-        Console.WriteLine("That word will then be repeated 10 times in the console.");
-        string word = Utilities.AskForString("What word should be repeated? ");
-        Console.WriteLine();
-        repeater.Repeat(word);
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("In this subprogram, you provide a word.");
+            Console.WriteLine("That word will then be repeated 10 times in the console.");
+            string word = Utilities.AskForString("What word should be repeated? ");
+            Console.WriteLine();
+            repeater.Repeat(word);
 
-        Console.WriteLine();
+            Console.WriteLine();
+            bool again = Utilities.AskForYesNo("Would you like to repeat another word (y/n)? ");
+            if (!again)
+            {
+                break;
+            }
+        } while (true);
+
+        // End of sub-program; wait for user response
         Console.Write("Press enter to go back to the main menu.");
         _ = Console.ReadLine();
     }
