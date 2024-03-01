@@ -4,7 +4,8 @@ namespace Ovning2;
 
 internal class Program
 {
-    static Repeater repeater = new();
+    static readonly Repeater repeater = new();
+    static readonly NthWordFinder wordFinder = new();
 
     static void Main(string[] args)
     {
@@ -22,6 +23,9 @@ internal class Program
                 case MenuOption.Repeat:
                     Repeat();
                     break;
+                case MenuOption.FindWord:
+                    FindWord();
+                    break;
             }
 
         } while (true);
@@ -35,8 +39,10 @@ internal class Program
             Console.Clear();
             Console.WriteLine("In this subprogram, you provide a word.");
             Console.WriteLine("That word will then be repeated 10 times in the console.");
+            Console.WriteLine();
             string word = Utilities.AskForString("What word should be repeated? ");
             Console.WriteLine();
+
             repeater.Repeat(word);
 
             Console.WriteLine();
@@ -48,6 +54,36 @@ internal class Program
         } while (true);
 
         // End of sub-program; wait for user response
+        Console.WriteLine();
+        Console.Write("Press enter to go back to the main menu.");
+        _ = Console.ReadLine();
+    }
+
+    static void FindWord()
+    {
+        Console.Clear();
+        Console.WriteLine("In this subprogram, you provide a sentence.");
+        Console.WriteLine("We will then find the 3rd word in the sentence.");
+        Console.WriteLine();
+        string sentence = Utilities.AskForString("What is your sentence?\n");
+        Console.WriteLine();
+
+        string word;
+        try
+        {
+            word = wordFinder.FindNthWord(sentence);
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+            return;
+        }
+
+        Console.WriteLine();
+        Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
+
+        // End of sub-program; wait for user input
+        Console.WriteLine();
         Console.Write("Press enter to go back to the main menu.");
         _ = Console.ReadLine();
     }
