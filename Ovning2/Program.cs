@@ -24,8 +24,8 @@ internal class Program
                 case MenuOption.SingleTicket:
                     GetSingleTicketPrice();
                     break;
-                case MenuOption.Repeat:
-                    Repeat();
+                case MenuOption.RepeatWord:
+                    RepeatWord();
                     break;
                 case MenuOption.FindWord:
                     FindWord();
@@ -64,7 +64,7 @@ internal class Program
         _ = Console.ReadLine();
     }
 
-    static void Repeat()
+    static void RepeatWord()
     {
         do
         {

@@ -9,7 +9,7 @@ public enum MenuOption : uint
     Quit,
     SingleTicket,  // Single ticket price
     // Group ticket price
-    Repeat = 3,  // Repeat a word
+    RepeatWord = 3,  // Repeat a word
     FindWord  // Find 3rd word in a sentence
 }
 
