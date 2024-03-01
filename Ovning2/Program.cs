@@ -68,19 +68,15 @@ internal class Program
         string sentence = Utilities.AskForString("What is your sentence?\n");
         Console.WriteLine();
 
-        string word;
         try
         {
-            word = wordFinder.FindNthWord(sentence);
+            string word = wordFinder.FindNthWord(sentence);
+            Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
         }
         catch (ArgumentException ex)
         {
             Console.WriteLine(ex.Message);
-            return;
         }
-
-        Console.WriteLine();
-        Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
 
         // End of sub-program; wait for user input
         Console.WriteLine();

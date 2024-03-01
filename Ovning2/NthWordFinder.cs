@@ -27,8 +27,7 @@ internal class NthWordFinder(uint wordNumber = 3)
         if (words.Length < WordNumber)
         {
             throw new ArgumentException(
-                message: $"Cannot find word number {WordNumber} in a sentence with {words.Length} words",
-                paramName: nameof(sentence));
+                message: $"Cannot find word number {WordNumber} in a sentence with {words.Length} words");
         }
         return words[WordNumber - 1];  // Convert number to index
     }
