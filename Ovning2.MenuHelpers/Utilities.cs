@@ -93,4 +93,44 @@ public static class Utilities
 
         return option;
     }
+
+    public static bool AskForYesNo(string prompt)
+    {
+        string? readResult;
+        bool answer;
+
+        // Ask the user a yes/no question
+        Console.Write(prompt);
+        do
+        {
+            readResult = Console.ReadLine();
+
+            // Empty input
+            if (string.IsNullOrWhiteSpace(readResult))
+            {
+                Console.Write("Cannot use an empty value. Try again: ");
+                continue;
+            }
+
+            string answerString = readResult.Trim().ToLower();
+            if (answerString.StartsWith('y'))
+            {
+                answer = true;
+                break;
+            }
+            else if (answerString.StartsWith('n'))
+            {
+                answer = false;
+                break;
+            }
+            else
+            {
+                // Unparseable answer
+                Console.Write($"Could not parse '{answerString}' as [y]es or [n]o. Try again: ");
+                continue;
+            }
+        } while (true);
+
+        return answer;
+    }
 }
