@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ovning2.MenuHelpers;
 
-public enum MenuOptions : uint
+public enum MenuOption : uint
 {
     Quit
 }
@@ -19,8 +19,8 @@ public class MenuHelper
         Console.WriteLine("Choose one of the options below.");
 
         // Construct the options from the MenuOptions
-        string[] names = Enum.GetNames(typeof(MenuOptions));
-        var values = Enum.GetValues(typeof(MenuOptions));
+        string[] names = Enum.GetNames(typeof(MenuOption));
+        var values = Enum.GetValues(typeof(MenuOption));
         int numOptions = names.Length;
         StringBuilder stringBuilder = new StringBuilder();
 

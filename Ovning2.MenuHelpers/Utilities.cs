@@ -62,10 +62,10 @@ public static class Utilities
         return answer;
     }
 
-    public static MenuOptions AskForOption(string prompt)
+    public static MenuOption AskForOption(string prompt)
     {
         string? readResult;
-        MenuOptions answer;
+        MenuOption answer;
 
         // Ask the user for one of the menu options. Repeat until valid.
         Console.Write(prompt);
@@ -81,14 +81,14 @@ public static class Utilities
             }
 
             // Result not a recognized MenuOptions value
-            if (!Enum.IsDefined(typeof(MenuOptions), readResult))
+            if (!Enum.IsDefined(typeof(MenuOption), readResult))
             {
                 Console.Write($"The choice '{readResult}' is not a valid option. Try again: ");
                 continue;
             }
 
             // Valid MenuOptions value
-            answer = (MenuOptions)Enum.Parse(typeof(MenuOptions), readResult);
+            answer = (MenuOption)Enum.Parse(typeof(MenuOption), readResult);
             break;
         } while (true);
 

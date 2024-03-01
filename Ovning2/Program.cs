@@ -10,11 +10,11 @@ internal class Program
         do
         {
             MenuHelper.DisplayMenu();
-            MenuOptions option = Utilities.AskForOption("Your choice: ");
+            MenuOption option = Utilities.AskForOption("Your choice: ");
 
             switch (option)
             {
-                case MenuOptions.Quit:
+                case MenuOption.Quit:
                     Environment.Exit(0);
                     break;
             }
