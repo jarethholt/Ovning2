@@ -8,9 +8,16 @@ internal class Repeater(uint numRepeats = 10)
 
     public void Repeat(string word)
     {
-        for (int i = 0; i < NumRepeats; i++)
+        /* This method has to take a word and then output:
+         * 1. word, 2. word, 3. word, ...
+         */
+        for (int i = 1; i <= NumRepeats; i++)
         {
-            Console.Write($"{word} ");
+            if (i > 1)
+            {
+                Console.Write(", ");
+            }
+            Console.Write($"{i}. {word}");
         }
         Console.WriteLine();
     }
