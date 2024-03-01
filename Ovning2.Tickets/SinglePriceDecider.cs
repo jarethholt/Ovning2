@@ -1,7 +1,7 @@
 ﻿// Class that helps decide the price of a single ticket.
 namespace Ovning2.Tickets;
 
-internal static class SinglePriceDecider
+public static class SinglePriceDecider
 {
     public static uint DecidePrice(uint age)
     {
@@ -10,7 +10,7 @@ internal static class SinglePriceDecider
         {
             categoryName = CategoryName.Youth;
         }
-        else if (age >= 64)
+        else if (age > 64)
         {
             categoryName = CategoryName.Senior;
         }
