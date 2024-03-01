@@ -61,22 +61,32 @@ internal class Program
 
     static void FindWord()
     {
-        Console.Clear();
-        Console.WriteLine("In this subprogram, you provide a sentence.");
-        Console.WriteLine("We will then find the 3rd word in the sentence.");
-        Console.WriteLine();
-        string sentence = Utilities.AskForString("What is your sentence?\n");
-        Console.WriteLine();
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("In this subprogram, you provide a sentence.");
+            Console.WriteLine("We will then find the 3rd word in the sentence.");
+            Console.WriteLine();
+            string sentence = Utilities.AskForString("What is your sentence?\n");
+            Console.WriteLine();
 
-        try
-        {
-            string word = wordFinder.FindWord(sentence);
-            Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
-        }
-        catch (ArgumentException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+            try
+            {
+                string word = wordFinder.FindWord(sentence);
+                Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            Console.WriteLine();
+            bool again = Utilities.AskForYesNo("Would you like to do another sentence (y/n)? ");
+            if (!again)
+            {
+                break;
+            }
+        } while (true);
 
         // End of sub-program; wait for user input
         Console.WriteLine();
