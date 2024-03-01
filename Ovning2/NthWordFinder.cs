@@ -21,7 +21,7 @@ internal class NthWordFinder(uint wordNumber = 3)
         }
     }
 
-    public string FindNthWord(string sentence)
+    public string FindWord(string sentence)
     {
         string[] words = sentence.Split(' ', options: StringSplitOptions.RemoveEmptyEntries);
         if (words.Length < WordNumber)

@@ -70,7 +70,7 @@ internal class Program
 
         try
         {
-            string word = wordFinder.FindNthWord(sentence);
+            string word = wordFinder.FindWord(sentence);
             Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
         }
         catch (ArgumentException ex)
