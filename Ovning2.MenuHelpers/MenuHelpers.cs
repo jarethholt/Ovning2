@@ -6,7 +6,10 @@ namespace Ovning2.MenuHelpers;
 
 public enum MenuOption : uint
 {
-    Quit
+    Quit,
+    // Single ticket price
+    // Group ticket price
+    Repeat = 3  // Repeat a word
 }
 
 public class MenuHelper
