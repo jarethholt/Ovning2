@@ -7,7 +7,7 @@ namespace Ovning2.MenuHelpers;
 public enum MenuOption : uint
 {
     Quit,
-    // Single ticket price
+    SingleTicket,  // Single ticket price
     // Group ticket price
     Repeat = 3,  // Repeat a word
     FindWord  // Find 3rd word in a sentence

@@ -1,4 +1,5 @@
 ﻿using Ovning2.MenuHelpers;
+using Ovning2.Tickets;
 
 namespace Ovning2;
 
@@ -19,6 +20,9 @@ internal class Program
             {
                 case MenuOption.Quit:
                     Environment.Exit(0);
+                    break;
+                case MenuOption.SingleTicket:
+                    GetSingleTicketPrice();
                     break;
                 case MenuOption.Repeat:
                     Repeat();
@@ -89,6 +93,24 @@ internal class Program
         } while (true);
 
         // End of sub-program; wait for user input
+        Console.WriteLine();
+        Console.Write("Press enter to go back to the main menu.");
+        _ = Console.ReadLine();
+    }
+
+    static void GetSingleTicketPrice()
+    {
+        Console.Clear();
+        Console.WriteLine("Welcome to the ticket price info subprogram!");
+        Console.WriteLine("We can tell you the price of a single ticket based on your age.");
+        Console.WriteLine();
+        uint age = Utilities.AskForUInt("Please enter your age: ");
+
+        uint price = SinglePriceDecider.DecidePrice(age);
+
+        Console.WriteLine();
+        Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
+
         Console.WriteLine();
         Console.Write("Press enter to go back to the main menu.");
         _ = Console.ReadLine();
