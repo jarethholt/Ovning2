@@ -19,14 +19,11 @@ public class MenuHelper
         Console.WriteLine("Choose one of the options below.");
 
         // Construct the options from the MenuOptions
-        string[] names = Enum.GetNames(typeof(MenuOption));
-        var values = Enum.GetValues(typeof(MenuOption));
-        int numOptions = names.Length;
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
 
-        for (int i = 0; i < numOptions; i++)
+        foreach (MenuOption option in Enum.GetValues(typeof(MenuOption)))
         {
-            stringBuilder.AppendLine($"{values.GetValue(i)}: {names[i]}");
+            stringBuilder.AppendLine($"{(uint)option}: {option}");
         }
         Console.WriteLine(stringBuilder.ToString());
         Console.WriteLine();

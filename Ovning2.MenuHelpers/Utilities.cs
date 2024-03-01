@@ -65,7 +65,7 @@ public static class Utilities
     public static MenuOption AskForOption(string prompt)
     {
         string? readResult;
-        MenuOption answer;
+        MenuOption option;
 
         // Ask the user for one of the menu options. Repeat until valid.
         Console.Write(prompt);
@@ -81,17 +81,16 @@ public static class Utilities
             }
 
             // Result not a recognized MenuOptions value
-            if (!Enum.IsDefined(typeof(MenuOption), readResult))
+            if (!Enum.TryParse(readResult, out option))
             {
                 Console.Write($"The choice '{readResult}' is not a valid option. Try again: ");
                 continue;
             }
 
             // Valid MenuOptions value
-            answer = (MenuOption)Enum.Parse(typeof(MenuOption), readResult);
             break;
         } while (true);
 
-        return answer;
+        return option;
     }
 }
