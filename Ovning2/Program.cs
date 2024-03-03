@@ -46,7 +46,7 @@ internal class Program
             Console.WriteLine();
             uint age = Utilities.AskForUInt("Please enter your age: ");
 
-            uint price = SinglePriceDecider.DecidePrice(age);
+            uint price = TicketPrices.DecidePrice(age);
 
             Console.WriteLine();
             Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
