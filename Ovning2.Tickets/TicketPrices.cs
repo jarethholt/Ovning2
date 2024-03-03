@@ -1,8 +1,9 @@
-﻿// Helper class for holding ticket prices
+﻿// Helper class for holding ticket prices and categories
 
 namespace Ovning2.Tickets;
 
 // Available ticket categories
+// enum isn't necessary but I wanted to try it out
 public enum CategoryName
 {
     Youth,
@@ -32,3 +33,36 @@ public static class TicketPrices
         return TicketCategories[categoryName];
     }
 }
+
+
+/* Similarly, this implementation was more for me to practice
+ * defining and passing delegates and using some LINQ functionality
+ */
+
+// Type of function that determines whether someone fits an age category
+public delegate bool AgeCheck(uint age);
+
+// Type of tuple that combines an AgeCheck with the associated price
+public class CheckAndPrice(AgeCheck checker, uint price)
+{
+    public AgeCheck Checker { get; init; } = checker;
+    public uint Price { get; init; } = price;
+}
+
+public static class TicketPrices2
+{
+    public static readonly Dictionary<CategoryName, CheckAndPrice> TicketCategories = new()
+    {
+        { CategoryName.Youth   , new((uint age) => age < 20,  80) },
+        { CategoryName.Senior  , new((uint age) => age > 64,  90) },
+        { CategoryName.Standard, new((uint age) => true    , 120) }
+    };
+
+    public static uint DecidePrice(uint age)
+    {
+        KeyValuePair<CategoryName, CheckAndPrice> kvp = TicketCategories
+            .First(kvp => kvp.Value.Checker(age));
+        return kvp.Value.Price;
+    }
+}
+
