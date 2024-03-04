@@ -11,9 +11,10 @@ public enum CategoryName
     Standard
 }
 
+// Original, straightforward implementation of TicketPrices
 public static class TicketPrices
 {
-    // Only contains a list of the ticket prices
+    // Only contains the ticket prices
     public static readonly Dictionary<CategoryName, uint> TicketCategories = new()
     {
         { CategoryName.Youth   ,  80 },
@@ -35,34 +36,37 @@ public static class TicketPrices
 
     public static uint DecideTotalPrice(uint[] ages)
     {
-        // Decide the total price from an array of ages
-        // Uses a straightforward calculation method
         uint total = 0;
         foreach (uint age in ages)
-        {
             total += DecidePrice(age);
-        }
+
         return total;
     }
 }
 
 
-/* Similarly, this implementation was more for me to practice
+
+/* This implementation was more for me to practice
  * defining and passing delegates and using some LINQ functionality
  */
 
 // Type of function that determines whether someone fits an age category
 public delegate bool AgeCheck(uint age);
 
-// Type of tuple that combines an AgeCheck with the associated price
+// Type that combines an AgeCheck with the associated price
 public class CheckAndPrice(AgeCheck checker, uint price)
 {
     public AgeCheck Checker { get; init; } = checker;
     public uint Price { get; init; } = price;
 }
 
-public static class TicketPrices2
+public static class TicketPrices_Advanced
 {
+    /* This dictionary includes a category, an age-checking function,
+     * and the associated price. A given age fits into the *first* category
+     * for which the age-check passes. Thus the last entry should always be
+     * Standard with an always-true function.
+     */
     public static readonly Dictionary<CategoryName, CheckAndPrice> TicketCategories = new()
     {
         { CategoryName.Youth   , new((uint age) => age < 20,  80) },
@@ -78,14 +82,12 @@ public static class TicketPrices2
         return kvp.Value.Price;
     }
 
-    private static int DecidePrice(int age)
-    {
-        return (int)DecidePrice((uint)age);
-    }
+    /* LINQ.Sum is not provided for uint, only signed integers.
+     * This wrapper handles the resulting conversions.
+     */
+    private static int DecidePrice(int age) => (int)DecidePrice((uint)age);
 
     public static uint DecideTotalPrice(IEnumerable<uint> ages) =>
-        // Decide the price using LINQ functions
-        // LINQ.Sum is not provided for uint, only signed integers
         (uint)ages.Select(Convert.ToInt32).Sum(DecidePrice);
 }
 

@@ -5,18 +5,18 @@ namespace Ovning2;
 
 internal class Program
 {
+    // Create classes that will run their respective actions
     static readonly Repeater repeater = new();
     static readonly NthWordFinder wordFinder = new();
 
     static void Main(string[] args)
     {
-        // Run the menu interface
         bool again = true;
         do
         {
             MenuHelper.DisplayMenu();
             MenuOption option = Utilities.AskForOption(
-                "Your choice (use either the number or name of the subprogram): ");
+                "Your choice (use either the number or name of the subprogram):");
 
             // Each action can be looped except for Quit
             Action? action = null;
@@ -33,7 +33,8 @@ internal class Program
                     break;
                 case MenuOption.GroupTicket:
                     action = GetGroupTicketPrice;
-                    againPrompt = "Would you like to calculate the price for another group (y/n)?";
+                    againPrompt =
+                        "Would you like to calculate the price for another group (y/n)?";
                     break;
                 case MenuOption.RepeatWord:
                     action = RepeatWord;
@@ -70,6 +71,7 @@ internal class Program
     }
 
     // Methods describing individual menu options
+    // Because of KeepLooping, these only need to describe one iteration
     static void GetSingleTicketPrice()
     {
         Console.Clear();
@@ -124,6 +126,10 @@ internal class Program
         string sentence = Utilities.AskForString("What is your sentence?");
         Console.WriteLine();
 
+        /* Right now FindWord throws an exception if the sentence has < 3 words
+         * but this is something easy for the user to enter. Maybe it's better
+         * to handle this through another AskFor* function?
+         */
         try
         {
             string word = wordFinder.FindWord(sentence);

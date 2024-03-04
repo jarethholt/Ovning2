@@ -13,10 +13,7 @@ internal class Repeater(uint numRepeats = 10)
          */
         for (int i = 1; i <= NumRepeats; i++)
         {
-            if (i > 1)
-            {
-                Console.Write(", ");
-            }
+            if (i > 1) Console.Write(", ");
             Console.Write($"{i}. {word}");
         }
         Console.WriteLine();
