@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Ovning2.MenuHelpers\Ovning2.MenuHelpers.csproj" />
-    <ProjectReference Include="..\Ovning2.Tickets\Ovning2.Tickets.csproj" />
-  </ItemGroup>
-
 </Project>

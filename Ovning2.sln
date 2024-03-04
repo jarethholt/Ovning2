@@ -5,10 +5,6 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ovning2", "Ovning2\Ovning2.csproj", "{8DBA1B95-7994-41DE-8786-6ADFBA7CA1DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ovning2.MenuHelpers", "Ovning2.MenuHelpers\Ovning2.MenuHelpers.csproj", "{B56AB8CE-C885-4295-A1B8-FD12D6197D7C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ovning2.Tickets", "Ovning2.Tickets\Ovning2.Tickets.csproj", "{6D55D2D4-A1E6-4EB7-9D94-6E1C1B929D40}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{8DBA1B95-7994-41DE-8786-6ADFBA7CA1DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DBA1B95-7994-41DE-8786-6ADFBA7CA1DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DBA1B95-7994-41DE-8786-6ADFBA7CA1DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B56AB8CE-C885-4295-A1B8-FD12D6197D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B56AB8CE-C885-4295-A1B8-FD12D6197D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B56AB8CE-C885-4295-A1B8-FD12D6197D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B56AB8CE-C885-4295-A1B8-FD12D6197D7C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D55D2D4-A1E6-4EB7-9D94-6E1C1B929D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D55D2D4-A1E6-4EB7-9D94-6E1C1B929D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D55D2D4-A1E6-4EB7-9D94-6E1C1B929D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D55D2D4-A1E6-4EB7-9D94-6E1C1B929D40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
