@@ -6,9 +6,11 @@ namespace Ovning2;
 // enum isn't necessary but I wanted to try it out
 public enum CategoryName
 {
+    Child,
     Youth,
+    Standard,
     Senior,
-    Standard
+    Centenarian
 }
 
 // Original, straightforward implementation of TicketPrices
@@ -17,16 +19,22 @@ public static class TicketPrices
     // Only contains the ticket prices
     public static readonly Dictionary<CategoryName, uint> TicketCategories = new()
     {
-        { CategoryName.Youth   ,  80 },
-        { CategoryName.Senior  ,  90 },
-        { CategoryName.Standard, 120 }
+        { CategoryName.Child      ,   0 },
+        { CategoryName.Youth      ,  80 },
+        { CategoryName.Standard   , 120 },
+        { CategoryName.Senior     ,  90 },
+        { CategoryName.Centenarian,   0 }
     };
 
     public static uint DecidePrice(uint age)
     {
         CategoryName categoryName;
-        if (age < 20)
+        if (age < 5)
+            categoryName = CategoryName.Child;
+        else if (age < 20)
             categoryName = CategoryName.Youth;
+        else if (age > 100)
+            categoryName = CategoryName.Centenarian;
         else if (age > 64)
             categoryName = CategoryName.Senior;
         else
@@ -69,9 +77,11 @@ public static class TicketPrices_Advanced
      */
     public static readonly Dictionary<CategoryName, CheckAndPrice> TicketCategories = new()
     {
-        { CategoryName.Youth   , new((uint age) => age < 20,  80) },
-        { CategoryName.Senior  , new((uint age) => age > 64,  90) },
-        { CategoryName.Standard, new((uint age) => true    , 120) }
+        { CategoryName.Child      , new((uint age) => age <   5,   0) },
+        { CategoryName.Youth      , new((uint age) => age <  20,  80) },
+        { CategoryName.Centenarian, new((uint age) => age > 100,   0) },
+        { CategoryName.Senior     , new((uint age) => age >  64,  90) },
+        { CategoryName.Standard   , new((uint age) => true     , 120) }
     };
 
     public static uint DecidePrice(uint age)
