@@ -1,5 +1,7 @@
 ﻿// Class the finds the nth word in a sentence.
 
+using System.Text.RegularExpressions;
+
 namespace Ovning2;
 
 internal class NthWordFinder(uint wordNumber = 3)
@@ -22,7 +24,9 @@ internal class NthWordFinder(uint wordNumber = 3)
 
     public string FindWord(string sentence)
     {
-        string[] words = sentence.Split(' ', options: StringSplitOptions.RemoveEmptyEntries);
+        // Remove punctuation using LINQ
+        string noPunctuation = Regex.Replace(sentence, "\\p{P}", " ");
+        string[] words = noPunctuation.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         if (words.Length < WordNumber)
             throw new ArgumentException(
                 $"Cannot find word number {WordNumber} in a sentence with {words.Length} words");
