@@ -36,7 +36,7 @@ internal class Program
                         "Would you like to calculate the price for another group (y/n)?";
                     break;
                 case MenuOption.RepeatWord:
-                    action = RepeatWord;
+                    action = repeater.RepeatApp;
                     againPrompt = "Would you like to repeat another word (y/n)?";
                     break;
                 case MenuOption.FindWord:
@@ -85,17 +85,5 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine(
             $"The total price for your group of {length} people is {totalPrice}kr.");
-    }
-
-    static void RepeatWord()
-    {
-        Console.Clear();
-        Console.WriteLine("In this subprogram, you provide a word.");
-        Console.WriteLine("That word will then be repeated 10 times in the console.");
-        Console.WriteLine();
-        string word = Utilities.AskForString("What word should be repeated? ");
-        Console.WriteLine();
-
-        repeater.Repeat(word);
     }
 }

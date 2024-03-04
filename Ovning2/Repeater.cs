@@ -18,4 +18,16 @@ internal class Repeater(uint numRepeats = 10)
         }
         Console.WriteLine();
     }
+
+    public void RepeatApp()
+    {
+        Console.Clear();
+        Console.WriteLine("In this subprogram, you provide a word.");
+        Console.WriteLine($"That word will then be repeated {NumRepeats} times in the console.");
+        Console.WriteLine();
+        string word = Utilities.AskForString("What word should be repeated? ");
+        Console.WriteLine();
+
+        Repeat(word);
+    }
 }
