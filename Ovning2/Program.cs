@@ -15,7 +15,8 @@ internal class Program
         do
         {
             MenuHelper.DisplayMenu();
-            MenuOption option = Utilities.AskForOption("Your choice: ");
+            MenuOption option = Utilities.AskForOption(
+                "Your choice (use either the number or name of the subprogram): ");
 
             // Each action can be looped except for Quit
             Action? action = null;
@@ -28,19 +29,19 @@ internal class Program
                     break;
                 case MenuOption.SingleTicket:
                     action = GetSingleTicketPrice;
-                    againPrompt = "Would you like to find another ticket price (y/n)? ";
+                    againPrompt = "Would you like to find another ticket price (y/n)?";
                     break;
                 case MenuOption.GroupTicket:
                     action = GetGroupTicketPrice;
-                    againPrompt = "Would you like to calculate the price for another group (y/n)? ";
+                    againPrompt = "Would you like to calculate the price for another group (y/n)?";
                     break;
                 case MenuOption.RepeatWord:
                     action = RepeatWord;
-                    againPrompt = "Would you like to repeat another word (y/n)? ";
+                    againPrompt = "Would you like to repeat another word (y/n)?";
                     break;
                 case MenuOption.FindWord:
                     action = FindWord;
-                    againPrompt = "Would you like to do another sentence (y/n)? ";
+                    againPrompt = "Would you like to do another sentence (y/n)?";
                     break;
             }
 
@@ -120,7 +121,7 @@ internal class Program
         Console.WriteLine("In this subprogram, you provide a sentence.");
         Console.WriteLine("We will then find the 3rd word in the sentence.");
         Console.WriteLine();
-        string sentence = Utilities.AskForString("What is your sentence?\n");
+        string sentence = Utilities.AskForString("What is your sentence?");
         Console.WriteLine();
 
         try
