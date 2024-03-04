@@ -1,6 +1,6 @@
 ﻿// Helper class for holding ticket prices and categories
 
-namespace Ovning2.Tickets;
+namespace Ovning2;
 
 // Available ticket categories
 // enum isn't necessary but I wanted to try it out

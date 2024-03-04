@@ -1,6 +1,6 @@
 ﻿// Utility class for requesting and interpreting user input.
 
-namespace Ovning2.MenuHelpers;
+namespace Ovning2;
 
 /* Define the type of a try-parsing function.
  * A try-parse style function takes an input, fills in a result,
