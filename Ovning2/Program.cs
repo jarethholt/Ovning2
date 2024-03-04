@@ -40,7 +40,7 @@ internal class Program
                     againPrompt = "Would you like to repeat another word (y/n)?";
                     break;
                 case MenuOption.FindWord:
-                    action = FindWord;
+                    action = wordFinder.FindWordApp;
                     againPrompt = "Would you like to do another sentence (y/n)?";
                     break;
             }
@@ -97,29 +97,5 @@ internal class Program
         Console.WriteLine();
 
         repeater.Repeat(word);
-    }
-
-    static void FindWord()
-    {
-        Console.Clear();
-        Console.WriteLine("In this subprogram, you provide a sentence.");
-        Console.WriteLine("We will then find the 3rd word in the sentence.");
-        Console.WriteLine();
-        string sentence = Utilities.AskForString("What is your sentence?");
-        Console.WriteLine();
-
-        /* Right now FindWord throws an exception if the sentence has < 3 words
-         * but this is something easy for the user to enter. Maybe it's better
-         * to handle this through another AskFor* function?
-         */
-        try
-        {
-            string word = wordFinder.FindWord(sentence);
-            Console.WriteLine($"The 3rd word in the sentence is: '{word}'");
-        }
-        catch (ArgumentException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
     }
 }

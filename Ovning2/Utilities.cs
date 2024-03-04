@@ -1,5 +1,7 @@
 ﻿// Utility class for requesting and interpreting user input.
 
+using System.Text.RegularExpressions;
+
 namespace Ovning2;
 
 /* Define the type of a try-parsing function.
@@ -9,7 +11,7 @@ namespace Ovning2;
  */
 public delegate bool TryParse<T>(string input, out T result);
 
-public static class Utilities
+public static partial class Utilities
 {
     // Loop an action until asked to stop
     public static void KeepLooping(Action action, string againPrompt)
@@ -157,7 +159,34 @@ public static class Utilities
             }
             return success;
         }
-        string errorFormatter = "Could not parse all entries as integers. Try again: ";
+        string errorFormatter = "Could not parse all entries as integers. Try again:";
         return AskForBase<uint[]>(prompt, tryParse, errorFormatter);
     }
+
+    public static string[] AskForSentence(string prompt, uint minWords)
+    {
+        bool tryParse(string readResult, out string[] words)
+        {
+            // Remove punctuation using the punctuation character class
+            string noPunctuation = Punctuation().Replace(readResult, " ");
+            string[] temp = noPunctuation.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            words = new string[temp.Length];
+            if (temp.Length < minWords)
+            {
+                words = new string[temp.Length];
+                return false;
+            }
+            else
+            {
+                temp.CopyTo(words, 0);
+                return true;
+            }
+        }
+        string errorFormatter =
+            $"Must enter a sentence with at least {minWords} words. Try again:";
+        return AskForBase<string[]>(prompt, tryParse, errorFormatter);
+    }
+
+    [GeneratedRegex("\\p{P}")]
+    private static partial Regex Punctuation();
 }
