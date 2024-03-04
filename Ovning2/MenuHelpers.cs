@@ -2,7 +2,7 @@
 
 using System.Text;
 
-namespace Ovning2.MenuHelpers;
+namespace Ovning2;
 
 // Name all the menu options here to keep them consistent
 public enum MenuOption : uint

@@ -1,5 +1,4 @@
-﻿using Ovning2.MenuHelpers;
-using Ovning2.Tickets;
+﻿// Driver of the main application menu
 
 namespace Ovning2;
 
