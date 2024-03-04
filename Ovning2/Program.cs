@@ -27,11 +27,11 @@ internal class Program
                     again = false;
                     break;
                 case MenuOption.SingleTicket:
-                    action = GetSingleTicketPrice;
+                    action = TicketPrices.SingleTicketApp;
                     againPrompt = "Would you like to find another ticket price (y/n)?";
                     break;
                 case MenuOption.GroupTicket:
-                    action = GetGroupTicketPrice;
+                    action = TicketPrices.GroupTicketApp;
                     againPrompt =
                         "Would you like to calculate the price for another group (y/n)?";
                     break;
@@ -50,40 +50,5 @@ internal class Program
                 Utilities.KeepLooping(action!, againPrompt);
             }
         } while (again);
-    }
-
-    // Methods describing individual menu options
-    // Because of KeepLooping, these only need to describe one iteration
-    static void GetSingleTicketPrice()
-    {
-        Console.Clear();
-        Console.WriteLine("Welcome to the ticket price info subprogram!");
-        Console.WriteLine("We can tell you the price of a single ticket based on your age.");
-        Console.WriteLine();
-        uint age = Utilities.AskForUInt("Please enter your age: ");
-
-        uint price = TicketPrices.DecidePrice(age);
-
-        Console.WriteLine();
-        Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
-    }
-
-    static void GetGroupTicketPrice()
-    {
-        Console.Clear();
-        Console.WriteLine("Welcome to the group ticket price calculator!");
-        Console.WriteLine(
-            "This subprogram calculates the total price for a group based on their ages.");
-        Console.WriteLine();
-        uint length = Utilities.AskForUInt("How many are in your group? ");
-        uint[] ages = Utilities.AskForUInts(
-            "What are their ages? (Separate them using space, comma, or a combination)",
-            length);
-
-        uint totalPrice = TicketPrices.DecideTotalPrice(ages);
-
-        Console.WriteLine();
-        Console.WriteLine(
-            $"The total price for your group of {length} people is {totalPrice}kr.");
     }
 }
