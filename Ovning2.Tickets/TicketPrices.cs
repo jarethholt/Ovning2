@@ -32,6 +32,18 @@ public static class TicketPrices
             categoryName = CategoryName.Standard;
         return TicketCategories[categoryName];
     }
+
+    public static uint DecideTotalPrice(uint[] ages)
+    {
+        // Decide the total price from an array of ages
+        // Uses a straightforward calculation method
+        uint total = 0;
+        foreach (uint age in ages)
+        {
+            total += DecidePrice(age);
+        }
+        return total;
+    }
 }
 
 
