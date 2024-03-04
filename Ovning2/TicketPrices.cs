@@ -28,17 +28,14 @@ public static class TicketPrices
 
     public static uint DecidePrice(uint age)
     {
-        CategoryName categoryName;
-        if (age < 5)
-            categoryName = CategoryName.Child;
-        else if (age < 20)
-            categoryName = CategoryName.Youth;
-        else if (age > 100)
-            categoryName = CategoryName.Centenarian;
-        else if (age > 64)
-            categoryName = CategoryName.Senior;
-        else
-            categoryName = CategoryName.Standard;
+        CategoryName categoryName = age switch
+        {
+            <    5 => CategoryName.Child,
+            <   20 => CategoryName.Youth,
+            <=  64 => CategoryName.Standard,
+            <= 100 => CategoryName.Senior,
+            _      => CategoryName.Centenarian
+        };
         return TicketCategories[categoryName];
     }
 
