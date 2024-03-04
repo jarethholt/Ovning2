@@ -133,4 +133,59 @@ public static class Utilities
 
         return answer;
     }
+
+    private static readonly char[] separator = [' ', ',', ';', '-'];
+
+    public static uint[] AskForUInts(string prompt, uint length)
+    {
+        string? readResult;
+        uint[] result = new uint[length];
+
+        // Ask the user to provide several numbers
+        // Fails if any of them is unparseable
+        Console.WriteLine(prompt);
+        do
+        {
+            readResult = Console.ReadLine();
+
+            // Empty input
+            if (String.IsNullOrWhiteSpace(readResult))
+            {
+                Console.Write("Cannot use an empty value. Try again: ");
+                continue;
+            }
+
+            // Split the string into components
+            string[] numStrings = readResult.Split(
+                separator: separator,
+                options: StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            if (length != numStrings.Length)
+            {
+                Console.Write(
+                    $"Expected {length} values, got {numStrings.Length}. Try again: ");
+                continue;
+            }
+
+            // Attempt to parse the components
+            bool success = false;
+            for (int i = 0; i < length; i++)
+            {
+                success = uint.TryParse(numStrings[i], out result[i]);
+                if (!success)
+                {
+                    break;
+                }
+            }
+            if (!success)
+            {
+                Console.Write("Could not parse all components as uint. Try again: ");
+                continue;
+            }
+
+            // If we got this far, the parsing was successful!
+            break;
+        } while (true);
+
+        return result;
+    }
 }

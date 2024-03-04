@@ -30,6 +30,10 @@ internal class Program
                     action = GetSingleTicketPrice;
                     againPrompt = "Would you like to find another ticket price (y/n)? ";
                     break;
+                case MenuOption.GroupTicket:
+                    action = GetGroupTicketPrice;
+                    againPrompt = "Would you like to calculate the price for another group (y/n)? ";
+                    break;
                 case MenuOption.RepeatWord:
                     action = RepeatWord;
                     againPrompt = "Would you like to repeat another word (y/n)? ";
@@ -77,6 +81,25 @@ internal class Program
 
         Console.WriteLine();
         Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
+    }
+
+    static void GetGroupTicketPrice()
+    {
+        Console.Clear();
+        Console.WriteLine("Welcome to the group ticket price calculator!");
+        Console.WriteLine(
+            "This subprogram calculates the total price for a group based on their ages.");
+        Console.WriteLine();
+        uint length = Utilities.AskForUInt("How many are in your group? ");
+        uint[] ages = Utilities.AskForUInts(
+            "What are their ages? (Separate them using space, comma, or a combination)",
+            length);
+
+        uint totalPrice = TicketPrices.DecideTotalPrice(ages);
+
+        Console.WriteLine();
+        Console.WriteLine(
+            $"The total price for your group of {length} people is {totalPrice}kr.");
     }
 
     static void RepeatWord()

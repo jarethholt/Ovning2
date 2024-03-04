@@ -8,8 +8,8 @@ public enum MenuOption : uint
 {
     Quit,
     SingleTicket,  // Single ticket price
-    // Group ticket price
-    RepeatWord = 3,  // Repeat a word
+    GroupTicket,  // Group ticket price
+    RepeatWord,  // Repeat a word
     FindWord  // Find 3rd word in a sentence
 }
 
