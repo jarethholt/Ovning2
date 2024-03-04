@@ -95,9 +95,9 @@ public static class TicketPrices_Advanced
     /* LINQ.Sum is not provided for uint, only signed integers.
      * This wrapper handles the resulting conversions.
      */
-    private static int DecidePrice(int age) => (int)DecidePrice((uint)age);
+    private static int DecidePriceInt(uint age) => (int)DecidePrice(age);
 
     public static uint DecideTotalPrice(IEnumerable<uint> ages) =>
-        (uint)ages.Select(Convert.ToInt32).Sum(DecidePrice);
+        (uint) ages.Sum(DecidePriceInt);
 }
 
