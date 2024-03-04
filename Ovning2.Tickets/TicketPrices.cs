@@ -72,9 +72,20 @@ public static class TicketPrices2
 
     public static uint DecidePrice(uint age)
     {
+        // Decide the price using LINQ.First (for practicing with LINQ)
         KeyValuePair<CategoryName, CheckAndPrice> kvp = TicketCategories
             .First(kvp => kvp.Value.Checker(age));
         return kvp.Value.Price;
     }
+
+    private static int DecidePrice(int age)
+    {
+        return (int)DecidePrice((uint)age);
+    }
+
+    public static uint DecideTotalPrice(IEnumerable<uint> ages) =>
+        // Decide the price using LINQ functions
+        // LINQ.Sum is not provided for uint, only signed integers
+        (uint)ages.Select(Convert.ToInt32).Sum(DecidePrice);
 }
 
