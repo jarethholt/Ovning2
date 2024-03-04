@@ -24,10 +24,6 @@ public static partial class Utilities
             Console.WriteLine();
             again = Utilities.AskForYesNo(againPrompt);
         } while (again);
-
-        Console.WriteLine();
-        Console.Write("Press enter to go back to the main menu.");
-        _ = Console.ReadLine();
     }
 
     /* Core looping logic of all AskFor* methods.
