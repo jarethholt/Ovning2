@@ -48,26 +48,9 @@ internal class Program
 
             if (again)
             {
-                KeepLooping(action!, againPrompt);
+                Utilities.KeepLooping(action!, againPrompt);
             }
         } while (again);
-    }
-
-    // Helper function: Loop an action until asked to stop
-    static void KeepLooping(Action action, string againPrompt)
-    {
-        bool again;
-        do
-        {
-            action();
-
-            Console.WriteLine();
-            again = Utilities.AskForYesNo(againPrompt);
-        } while (again);
-
-        Console.WriteLine();
-        Console.Write("Press enter to go back to the main menu.");
-        _ = Console.ReadLine();
     }
 
     // Methods describing individual menu options

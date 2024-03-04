@@ -11,6 +11,23 @@ public delegate bool TryParse<T>(string input, out T result);
 
 public static class Utilities
 {
+    // Loop an action until asked to stop
+    public static void KeepLooping(Action action, string againPrompt)
+    {
+        bool again;
+        do
+        {
+            action();
+
+            Console.WriteLine();
+            again = Utilities.AskForYesNo(againPrompt);
+        } while (again);
+
+        Console.WriteLine();
+        Console.Write("Press enter to go back to the main menu.");
+        _ = Console.ReadLine();
+    }
+
     /* Core looping logic of all AskFor* methods.
      * Uses an initial prompt to ask a user for an input.
      * The input is passed to a try-parse style function.
