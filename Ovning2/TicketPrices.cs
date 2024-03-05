@@ -132,10 +132,13 @@ public class TicketPrices_Advanced : TicketPricesBase
 
     /* LINQ.Sum is not provided for uint, only signed integers.
      * This wrapper handles the resulting conversions.
-     */
     private int DecidePriceInt(uint age) => (int)DecidePrice(age);
-
     public override uint DecideTotalPrice(uint[] ages) =>
         (uint) ages.Sum(DecidePriceInt);
+     */
+
+    // Alternatively LINQ's Aggregate can be used
+    public override uint DecideTotalPrice(uint[] ages) =>
+        ages.Aggregate<uint, uint>(0, (uint curr, uint next) => curr + next);
 }
 
