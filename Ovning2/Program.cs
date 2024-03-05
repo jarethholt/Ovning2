@@ -7,6 +7,7 @@ internal class Program
     // Create classes that will run their respective actions
     static readonly Repeater repeater = new();
     static readonly NthWordFinder wordFinder = new();
+    static readonly TicketPrices ticketPrices = new();
 
     static void Main(string[] args)
     {
@@ -27,11 +28,11 @@ internal class Program
                     again = false;
                     break;
                 case MenuOption.SingleTicket:
-                    action = TicketPrices.SingleTicketApp;
+                    action = ticketPrices.SingleTicketApp;
                     againPrompt = "Would you like to find another ticket price (y/n)?";
                     break;
                 case MenuOption.GroupTicket:
-                    action = TicketPrices.GroupTicketApp;
+                    action = ticketPrices.GroupTicketApp;
                     againPrompt =
                         "Would you like to calculate the price for another group (y/n)?";
                     break;

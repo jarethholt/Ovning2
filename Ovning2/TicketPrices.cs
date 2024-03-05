@@ -13,8 +13,49 @@ public enum CategoryName
     Centenarian
 }
 
+// Similarly, a base class absolutely isn't necessary but I did TicketPrices twice
+public abstract class TicketPricesBase
+{
+    public abstract uint DecidePrice(uint age);
+    public abstract uint DecideTotalPrice(uint[] ages);
+
+    public void SingleTicketApp()
+    {
+        Console.Clear();
+        Console.WriteLine("Welcome to the ticket price info subprogram!");
+        Console.WriteLine("We can tell you the price of a single ticket based on your age.");
+        Console.WriteLine();
+        uint age = Utilities.AskForUInt("Please enter your age: ");
+
+        uint price = DecidePrice(age);
+
+        Console.WriteLine();
+        Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
+    }
+
+    public void GroupTicketApp()
+    {
+        Console.Clear();
+        Console.WriteLine("Welcome to the group ticket price calculator!");
+        Console.WriteLine(
+            "This subprogram calculates the total price for a group based on their ages.");
+        Console.WriteLine();
+        uint length = Utilities.AskForUInt("How many are in your group? ");
+        uint[] ages = Utilities.AskForUInts(
+            "What are their ages? (Separate them using space, comma, or a combination)",
+            length);
+
+        uint totalPrice = DecideTotalPrice(ages);
+
+        Console.WriteLine();
+        Console.WriteLine(
+            $"The total price for your group of {length} people is {totalPrice}kr.");
+    }
+}
+
+
 // Original, straightforward implementation of TicketPrices
-public static class TicketPrices
+public class TicketPrices : TicketPricesBase
 {
     // Only contains the ticket prices
     public static readonly Dictionary<CategoryName, uint> TicketCategories = new()
@@ -26,7 +67,7 @@ public static class TicketPrices
         { CategoryName.Centenarian,   0 }
     };
 
-    public static uint DecidePrice(uint age)
+    public override uint DecidePrice(uint age)
     {
         CategoryName categoryName = age switch
         {
@@ -39,46 +80,13 @@ public static class TicketPrices
         return TicketCategories[categoryName];
     }
 
-    public static uint DecideTotalPrice(uint[] ages)
+    public override uint DecideTotalPrice(uint[] ages)
     {
         uint total = 0;
         foreach (uint age in ages)
             total += DecidePrice(age);
 
         return total;
-    }
-
-    public static void SingleTicketApp()
-    {
-        Console.Clear();
-        Console.WriteLine("Welcome to the ticket price info subprogram!");
-        Console.WriteLine("We can tell you the price of a single ticket based on your age.");
-        Console.WriteLine();
-        uint age = Utilities.AskForUInt("Please enter your age: ");
-
-        uint price = TicketPrices.DecidePrice(age);
-
-        Console.WriteLine();
-        Console.WriteLine($"The price of a ticket for your age {age} is {price}kr.");
-    }
-
-    public static void GroupTicketApp()
-    {
-        Console.Clear();
-        Console.WriteLine("Welcome to the group ticket price calculator!");
-        Console.WriteLine(
-            "This subprogram calculates the total price for a group based on their ages.");
-        Console.WriteLine();
-        uint length = Utilities.AskForUInt("How many are in your group? ");
-        uint[] ages = Utilities.AskForUInts(
-            "What are their ages? (Separate them using space, comma, or a combination)",
-            length);
-
-        uint totalPrice = TicketPrices.DecideTotalPrice(ages);
-
-        Console.WriteLine();
-        Console.WriteLine(
-            $"The total price for your group of {length} people is {totalPrice}kr.");
     }
 }
 
