@@ -8,6 +8,8 @@ internal class Program
     static readonly Repeater repeater = new();
     static readonly NthWordFinder wordFinder = new();
     static readonly TicketPrices ticketPrices = new();
+    // Use the other ticketprices implementation
+    // static readonly TicketPrices_Advanced ticketPrices = new();
 
     static void Main(string[] args)
     {

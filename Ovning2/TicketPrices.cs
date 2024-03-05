@@ -106,7 +106,7 @@ public class CheckAndPrice(AgeCheck checker, uint price)
     public uint Price { get; init; } = price;
 }
 
-public static class TicketPrices_Advanced
+public class TicketPrices_Advanced : TicketPricesBase
 {
     /* This dictionary includes a category, an age-checking function,
      * and the associated price. A given age fits into the *first* category
@@ -122,7 +122,7 @@ public static class TicketPrices_Advanced
         { CategoryName.Standard   , new((uint age) => true     , 120) }
     };
 
-    public static uint DecidePrice(uint age)
+    public override uint DecidePrice(uint age)
     {
         // Decide the price using LINQ.First (for practicing with LINQ)
         KeyValuePair<CategoryName, CheckAndPrice> kvp = TicketCategories
@@ -133,9 +133,9 @@ public static class TicketPrices_Advanced
     /* LINQ.Sum is not provided for uint, only signed integers.
      * This wrapper handles the resulting conversions.
      */
-    private static int DecidePriceInt(uint age) => (int)DecidePrice(age);
+    private int DecidePriceInt(uint age) => (int)DecidePrice(age);
 
-    public static uint DecideTotalPrice(IEnumerable<uint> ages) =>
+    public override uint DecideTotalPrice(uint[] ages) =>
         (uint) ages.Sum(DecidePriceInt);
 }
 
